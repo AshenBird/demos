@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>时间戳转换</title>
     <style>
       #app {
         display: flex;
@@ -79,11 +79,16 @@
           showInput2.value = text2timestamp(dateInput.value);
         };
 
-        onTimestampInput();
+        
         timestampInput.addEventListener("input", onTimestampInput);
         
         onTextstampInput();
         dateInput.addEventListener("input", onTextstampInput);
+
+        // 初始化的时候，填上当前时间戳
+        let currentDate = new Date();
+        timestampInput.value = Math.floor(currentDate / 1000);
+        onTimestampInput();
       })();
     </script>
   </body>
