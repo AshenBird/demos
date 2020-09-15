@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #app {
+        display: flex;
+        justify-content: center;
+      }
+      .main-container {
+        display: flex;
+        flex-direction: column;
+        width: 800px;
+      }
+      .row {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+      }
+      .input-container{
+        flex: 1;
+        justify-content: flex-start;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="main-container">
+        <div class="row">
+          <div class="input-container">
+            <label for="timestampInput">Unix时间戳（秒）</label>
+            <input type="text" id="timestampInput" />
+          </div>
+          <div class="input-container">
+            <label for="showInput">日期</label>
+            <input type="text" id="showInput" disabled />
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-container">
+            <label for="dateInput">日期</label>
+            <input type="text" id="dateInput" />
+          </div>
+          <div class="input-container">
+            <label for="showInput2">时间戳</label>
+            <input type="text" id="showInput2" disabled />
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      (() => {
+        const timestampInput = document.getElementById("timestampInput");
+        const showInput = document.getElementById("showInput");
+        
+        const dateInput = document.getElementById("dateInput");
+        const showInput2 = document.getElementById("showInput2");
+
+        const timestamp2text = timestamp => {
+          if (isNaN(timestamp * 1)) {
+            return "NaN";
+          }
+          return new Date(timestamp * 1000).toLocaleString();
+        };
+        const text2timestamp = text => {
+          const date = new Date(text);
+          if (date.toDateString() === "Invalid Date") {
+            return "Invalid Date";
+          }
+          return date.getTime() / 1000;
+        };
+
+        const onTimestampInput = e => {
+          showInput.value = timestamp2text(timestampInput.value);
+        };
+        const onTextstampInput = e => {
+          showInput2.value = text2timestamp(dateInput.value);
+        };
+
+        onTimestampInput();
+        timestampInput.addEventListener("input", onTimestampInput);
+        
+        onTextstampInput();
+        dateInput.addEventListener("input", onTextstampInput);
+      })();
+    </script>
+  </body>
+</html>
