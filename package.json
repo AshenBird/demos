@@ -1,0 +1,9 @@
+{
+  "name": "@mcswift/demos",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/AshenBird/demos.git",
+  "author": "McSwift<develop@mcswift.pro>",
+  "license": "MIT",
+  "private": true
+}
