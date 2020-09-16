@@ -5,23 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>时间戳转换</title>
     <style>
+      body {
+        margin: 0;
+      }
       #app {
         display: flex;
         justify-content: center;
+        height: 100vh;
       }
       .main-container {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         width: 800px;
+        height: 80%;
+        min-height: 200px;
       }
       .row {
         display: flex;
         justify-content: space-around;
         margin-bottom: 20px;
       }
-      .input-container{
+      .input-container {
         flex: 1;
+        display: flex;
         justify-content: flex-start;
+      }
+      .input-container label {
+        font-weight: 700;
+        width: 150px;
+        text-align: right;
+        padding-right: 8px;
+      }
+      .input-container label::after {
+        content: " :";
       }
     </style>
   </head>
@@ -30,7 +47,14 @@
       <div class="main-container">
         <div class="row">
           <div class="input-container">
-            <label for="timestampInput">Unix时间戳（秒）</label>
+            <label for="currentInput">当前时间戳</label>
+            <input type="text" id="currentInput" readonly />
+            <button id="CopyBtn">复制</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-container">
+            <label for="timestampInput">Unix时间戳 ( 秒 )</label>
             <input type="text" id="timestampInput" />
           </div>
           <div class="input-container">
@@ -52,11 +76,16 @@
     </div>
     <script>
       (() => {
+        const currentInput = document.getElementById("currentInput");
+        const CopyBtn = document.getElementById("CopyBtn");
+
         const timestampInput = document.getElementById("timestampInput");
         const showInput = document.getElementById("showInput");
-        
+
         const dateInput = document.getElementById("dateInput");
         const showInput2 = document.getElementById("showInput2");
+
+        
 
         const timestamp2text = timestamp => {
           if (isNaN(timestamp * 1)) {
@@ -69,7 +98,7 @@
           if (date.toDateString() === "Invalid Date") {
             return "Invalid Date";
           }
-          return date.getTime() / 1000;
+          return Math.floor(date.getTime() / 1000);
         };
 
         const onTimestampInput = e => {
@@ -79,16 +108,25 @@
           showInput2.value = text2timestamp(dateInput.value);
         };
 
-        
         timestampInput.addEventListener("input", onTimestampInput);
-        
+
         onTextstampInput();
         dateInput.addEventListener("input", onTextstampInput);
 
         // 初始化的时候，填上当前时间戳
-        let currentDate = new Date();
+        const currentDate = new Date();
         timestampInput.value = Math.floor(currentDate / 1000);
         onTimestampInput();
+
+        CopyBtn.addEventListener("click", () => {
+          currentInput.select();
+          document.execCommand("copy");
+        });
+        const setCurrent = () => {
+          currentInput.value = Math.floor(Date.now() / 1000);
+        };
+        setCurrent();
+        const timer = setInterval(setCurrent, 1000);
       })();
     </script>
   </body>
