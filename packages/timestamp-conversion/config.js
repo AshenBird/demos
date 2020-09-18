@@ -1,5 +1,4 @@
 module.exports = {
-  type:"html",
-  entry: './index.html'
-}
-
+  type: "html",
+  entry: "./index.html"
+};

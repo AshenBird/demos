@@ -1,10 +1,17 @@
 import { createStore } from "vuex";
 
 export default createStore({
-  state: {
-    configs: JSON.parse(process.env.VUE_APP_DEMOS)
+  state() {
+    return {
+      pages: JSON.parse(process.env.VUE_APP_DEMOS),
+      currentPage: {}
+    };
   },
-  mutations: {},
+  mutations: {
+    changCurrent(state, payload) {
+      state.currentPage = payload;
+    }
+  },
   actions: {},
   modules: {}
 });

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="default-layout">
     <div class="left-part">
       <Sidebar></Sidebar>
     </div>
@@ -19,3 +19,13 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+.default-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  & > * {
+    height: 100%;
+  }
+}
+</style>

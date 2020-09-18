@@ -1,13 +1,5 @@
 <template>
-  <div style="width: 256px">
-    <a-button
-      type="primary"
-      @click="toggleCollapsed"
-      style="margin-bottom: 16px"
-    >
-      <MenuUnfoldOutlined v-if="collapsed" />
-      <MenuFoldOutlined v-else />
-    </a-button>
+  <div class="side-bar">
     <a-menu
       v-model:openKeys="openKeys"
       v-model:selectedKeys="selectedKeys"
@@ -15,6 +7,10 @@
       theme="dark"
       :inline-collapsed="collapsed"
     >
+      <a-button class="side-bar-toggle" type="primary" @click="toggleCollapsed">
+        <MenuUnfoldOutlined v-if="collapsed" />
+        <MenuFoldOutlined v-else />
+      </a-button>
       <a-menu-item key="1">
         <PieChartOutlined />
         <span>Option 1</span>
@@ -96,3 +92,17 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+.side-bar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .ant-menu {
+    flex: auto;
+  }
+  .side-bar-toggle {
+    width: 100%;
+  }
+}
+</style>
