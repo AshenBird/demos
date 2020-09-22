@@ -11,11 +11,11 @@
         <MenuUnfoldOutlined v-if="collapsed" />
         <MenuFoldOutlined v-else />
       </a-button>
-      <a-menu-item key="1">
-        <PieChartOutlined />
-        <span>Option 1</span>
+      <a-menu-item v-for="(page, key) of pages" :key="key">
+        <!-- <PieChartOutlined /> -->
+        <span>{{ page.title }}</span>
       </a-menu-item>
-      <a-menu-item key="2">
+      <!-- <a-menu-item key="2">
         <DesktopOutlined />
         <span>Option 2</span>
       </a-menu-item>
@@ -46,7 +46,7 @@
             Option 12
           </a-menu-item>
         </a-sub-menu>
-      </a-sub-menu>
+      </a-sub-menu> -->
     </a-menu>
   </div>
 </template>
@@ -54,22 +54,22 @@
 <script>
 import {
   MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  PieChartOutlined,
-  MailOutlined,
-  DesktopOutlined,
-  InboxOutlined,
-  AppstoreOutlined
+  MenuUnfoldOutlined
+  // PieChartOutlined,
+  // MailOutlined,
+  // DesktopOutlined,
+  // InboxOutlined,
+  // AppstoreOutlined
 } from "@ant-design/icons-vue";
 export default {
   components: {
     MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    PieChartOutlined,
-    MailOutlined,
-    DesktopOutlined,
-    InboxOutlined,
-    AppstoreOutlined
+    MenuUnfoldOutlined
+    // PieChartOutlined,
+    // MailOutlined,
+    // DesktopOutlined,
+    // InboxOutlined,
+    // AppstoreOutlined
   },
   data() {
     return {

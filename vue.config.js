@@ -5,9 +5,15 @@ const packagNames = fs.readdirSync(packagDir);
 const configList = packagNames.map(item => {
   const dir = resolve(__dirname, "packages", item);
   const config = require(resolve(dir, "config.js"));
-  return Object.assign({}, config, {
-    entry: join(dir, config.entry)
-  });
+  return Object.assign(
+    {
+      name: item
+    },
+    config,
+    {
+      entry: join(dir, config.entry)
+    }
+  );
 });
 console.log(configList);
 process.env.VUE_APP_DEMOS = JSON.stringify(configList);
