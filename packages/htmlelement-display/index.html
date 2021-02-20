@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head id="Head">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style id="Style">
+    #TestScript{
+      display: block;
+      color: red;
+    }
+    #Head{
+      display: block;
+    }
+    #Style{
+      display: block;
+    }
+    #Title{
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <title id="Title">Document</title>
+  <button id="TestBtn">测试</button>
+  <script id="TestScript" type="text/javascript">
+  ()=>{
+    const btn = document.getElementById("TestBtn")
+    btn.addEventListener('click', ()=>{
+      alert('working')
+    }) 
+  }
+  </script>
+</body>
+</html>
